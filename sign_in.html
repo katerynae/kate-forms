@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcom to OrdeGroove</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/jquery.steps.css">
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script src="js/jquery.cookie-1.3.1.js"></script>
+	<script src="js/jquery.validate.js"></script>
+	<script src="js/jquery.steps.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<script>
+		    var form = $("#merchant_data");
+			form.validate({
+			    errorPlacement: function errorPlacement(error, element) { element.before(error); },
+			    rules: {
+			        confirm: {
+			            equalTo: "#password"
+			        }
+			    }
+			});
+			form.children("div").steps({
+			    headerTag: "h3",
+			    bodyTag: "section",
+			    transitionEffect: "slideLeft",
+			    onStepChanging: function (event, currentIndex, newIndex)
+			    {
+			        form.validate().settings.ignore = ":disabled,:hidden";
+			        return form.valid();
+			    },
+			    onFinishing: function (event, currentIndex)
+			    {
+			        form.validate().settings.ignore = ":disabled";
+			        return form.valid();
+			    },
+			    onFinished: function (event, currentIndex)
+			    {
+			        alert("Submitted!");
+			    }
+			});
+		</script>
+		<span id="logo">
+			<a href="#"><img src="http://www.ordergroove.com/hubfs/Ordergroove%20Dec%202016/Images/ordergroove_logo.png?t=1487782840290" alt="Ordergroove" title="Ordergroove"><a>
+		</span>
+		<div id="registration_form">
+			<h1>Welcome to Subscription Trial</h1>
+			<form action="" id="merchant_data">
+				<div>
+					<h3>Enter personal Information</h3>
+			   		<section>
+					   <label for="merchant_name">Enter your company name</label>
+			           <input type="text" id="merchant_name" class="required" name="merchantname">
+			           <label for="user_name">Create a user name</label>
+			           <input type="text" id="user_name" class="required" name="username">
+			           <label for="password">Create a password</label>
+			           <input type="password" id="password" name="psw" class="required" name="password">
+			           <label for="email">Enter your email</label>
+			           <input type="email" id="email" class="required" name="email">
+		        	</section>
+		        	<h3>Enter product information</h3>
+			        <section>
+					   <label for="product_name">Product Name</label>
+			           <input type="text" id="product_name" class="required">
+			           <label for="product_url">Product URL</label>
+			           <input type="text" id="product_url" class="required">
+			           <label for="product_price">Price</label>
+			           <input type="number" id="product_price" class="required">
+			           <label for="email">Product Id</label>
+			           <input type="text" id="product_id" class="required">
+			           <label>Select frequency</label>
+			           <fieldset class="frequency_block">
+				           <input type="radio" name="frequency" value="weekly" id="weekly_frequency" checked>
+				           <label for = "weekly_frequency">Weekly</label>
+		  				   <input type="radio" name="frequency" value="monthly" id="monthly_frequency">
+		  				   <label for = "monthly_frequency">Monthly</label>
+		  				   <input type="radio" name="frequency" value="biweekly" id="bemonthly_frequency">
+		  				   <label for = "bemonthly_frequency">Bimonthly</label>
+	  				   </fieldset>
+			        </section>
+			    </div>
+			</form>
+
+		</div>
+	</div>
+</body>
+
+</html>
