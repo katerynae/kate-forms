@@ -44,7 +44,34 @@
                     alert("Submitted!");
                 }
             });
-        })
+            var name = 1, id=1, label=1, product=2
+            var removeButton = $("#btnRemoveForm").clone()
+            $("#btnAddForm").click(function() {
+		        $clone = $("div.add_product").last().clone() 
+		        $number = $clone.find("div")
+		        $clone.find("input").each(function() {
+	              $(this).attr("name", $(this).attr("name") + name)
+	              $(this).attr("id", $(this).attr("id") + id) 
+	            })
+	            name++
+	            id++
+	            $clone.find("label").each(function() {
+	              $(this).attr("for", $(this).attr("for") + label)
+	            })
+	            label++
+	            $clone.attr("class", "add_product product-" + product)
+	            product++
+		        //$number.html(parseInt($number.html()) + 1) 
+		        $("div.add_product").last().after($clone)
+
+		        if ($("div.add_product").length >1){$("#btnRemoveForm").attr("class", "visible")}
+   			 });
+
+            $("#btnRemoveForm").click(function() {
+		        $("div.add_product").last().remove()
+		        if ($("div.add_product").length == 1){$("#btnRemoveForm").attr("class", "invisible")}
+   			});
+        });
     </script>
 </head>
 <body>
@@ -69,23 +96,27 @@
 		        	</section>
 		        	<h3>Enter product information</h3>
 			        <section>
-					   <label for="product_name">Product Name</label>
-			           <input type="text" id="product_name" class="required">
-			           <label for="product_url">Product URL</label>
-			           <input type="text" id="product_url" class="required">
-			           <label for="product_price">Price</label>
-			           <input type="number" id="product_price" class="required">
-			           <label for="email">Product Id</label>
-			           <input type="text" id="product_id" class="required">
-			           <label>Select frequency</label>
-			           <fieldset class="frequency_block">
-				           <input type="radio" name="frequency" value="weekly" id="weekly_frequency" checked>
-				           <label for = "weekly_frequency">Weekly</label>
-		  				   <input type="radio" name="frequency" value="monthly" id="monthly_frequency">
-		  				   <label for = "monthly_frequency">Monthly</label>
-		  				   <input type="radio" name="frequency" value="biweekly" id="biweekly_frequency">
-		  				   <label for = "biweekly_frequency">Biweekly</label>
+			           <div class="add_product product-1">
+						   <label for="product_name">Product Name</label>
+				           <input type="text" id="product_name" class="required" name="productname">
+				           <label for="product_url">Product URL</label>
+				           <input type="text" id="product_url" class="required" name="producturl">
+				           <label for="product_price">Price</label>
+				           <input type="number" id="product_price" class="required" name="productprice">
+				           <label for="product_id">Product Id</label>
+				           <input type="text" id="product_id" class="required" name="productid">
+				           <span>Select frequency</span>
+				           <fieldset class="frequency_block">
+					           <input type="radio" name="frequency" value="weekly" id="weekly_frequency" checked>
+					           <label for = "weekly_frequency">Weekly</label>
+			  				   <input type="radio" name="frequency" value="monthly" id="monthly_frequency">
+			  				   <label for = "monthly_frequency">Monthly</label>
+			  				   <input type="radio" name="frequency" value="biweekly" id="biweekly_frequency">
+			  				   <label for = "biweekly_frequency">Biweekly</label>
 	  				   </fieldset>
+	  				   </div>
+	  				   <button type="button" id="btnAddForm">+Add another product</button>
+	  				   <button type="button" id="btnRemoveForm" class="invisible">+Remove Product</button>
 			        </section>
 			    </div>
 			</form>

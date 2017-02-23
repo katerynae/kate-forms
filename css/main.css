@@ -4,6 +4,7 @@ input,
 select,
 textarea {
     font-family: sans-serif;
+    outline: none;
 }
 
 body {
@@ -142,3 +143,20 @@ body {
 .wizard > .actions .disabled a:active {background: #eee;}
 
 #steps-uid-0 .actions .disabled{display: none;}
+
+#btnAddForm, #btnRemoveForm {
+    display: inline-block;
+    background: #fff;
+    border: 0;
+    line-height: 1.8;
+    font-size: 0.9rem;
+    font-family: 'Lora', 'Georgia', serif;
+    color:#0aa7ca;
+    padding: 10px 25px 0 0;
+}
+
+section #btnRemoveForm.invisible{
+    display: none;
+}
+
+section #btnRemoveForm.visible{display: inline;}
