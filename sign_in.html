@@ -25,9 +25,14 @@
                 bodyTag: "section",
                 transitionEffect: "slideLeft",
                 onStepChanging: function (event, currentIndex, newIndex)
-                {
-                    form.validate().settings.ignore = ":disabled,:hidden";
-                    return form.valid();
+                { 
+                	if (currentIndex == 0){
+                		form.validate().settings.ignore = ":disabled,:hidden";
+                        return form.valid();
+                	}else{
+                        form.validate().settings.ignore = ":disabled,:hidden,:empty";
+                        return form.valid();
+                	}  
                 },
                 onFinishing: function (event, currentIndex)
                 {
