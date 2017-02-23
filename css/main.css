@@ -85,6 +85,8 @@ body {
 }
 .wizard > .content > .body label.error{
     color: #8a1f11;
+    font-size: 0.8em;
+    padding: 0 !important;
 }
 .wizard > .steps > ul > li{
     float: left;
