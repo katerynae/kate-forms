@@ -51,6 +51,7 @@
 		        $number = $clone.find("div")
 		        $clone.find("input").each(function() {
 	              $(this).attr("name", $(this).attr("name") + name)
+	              $(this).val('')
 	              $(this).attr("id", $(this).attr("id") + id) 
 	            })
 	            name++
